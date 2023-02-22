@@ -2,11 +2,20 @@ import products from '../models/Product.js';
 
 class ProductController {
 
+    static setHeaders = (res, method) => {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader("Access-Control-Allow-Methods", method);
+    }
+
     // List all of the products
     static getProducts = (req, res) => {
         products.find((err, products) => {
             res.status(200).json(products);
         });
+        this.setHeaders(res, "GET")
     }
 
     // List products by Id
@@ -17,6 +26,7 @@ class ProductController {
                 ? res.status(400).send({ message: err.message })
                 : res.status(200).send(product);
         });
+        this.setHeaders(res, "GET")
     }
 
     // Post a new product
@@ -34,6 +44,7 @@ class ProductController {
                 ? res.status(500).send({ message: err.message })
                 : res.status(201).send(product.toJSON());
         });
+        this.setHeaders(res, "POST")
     }
 
     // Update a product information
@@ -44,6 +55,7 @@ class ProductController {
                 ? res.status(500).send({ message: err.message })
                 : res.status(200).send(`You update the product ${id} for ${req.body.name}`);
         })
+        this.setHeaders(res, "PUT")
     }
 
     // Delete a Product
@@ -54,6 +66,7 @@ class ProductController {
                 ? res.status(500).send({ message: err.message })
                 : res.status(200).send(`You deleted the product ${id}`);
         })
+        this.setHeaders(res, "DELETE")
     }
 }
 
