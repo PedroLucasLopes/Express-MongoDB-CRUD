@@ -1,4 +1,4 @@
-<h1>💼 Pricemet Test Frontend (MongoDB + NodeJS)</h1>
+<h1>💼 Pricemet Test Backend (MongoDB + NodeJS)</h1>
 
 <p>Welcome to this test, here we will see a working CRUD integrated with a NodeJS Backend it's easy to use and see all the implementations</p>
 
